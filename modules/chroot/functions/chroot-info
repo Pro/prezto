@@ -1,0 +1,35 @@
+#
+# Exposes chroot info to the $chroot_info variable
+#
+# Authors:
+#   Stefan Profanter
+#
+
+# Gets the chroot informations.
+typeset -gA chroot_info
+
+function chroot-info {
+  local chroot
+  local chroot_format
+  local chroot_formatted
+
+  # CHROOT
+  chroot_info=""
+  zstyle -s ':prezto:module:chroot:info:format' format 'chroot_format'
+  if [[ -n "$chroot_format" ]]; then
+    if [ -r /etc/debian_chroot ]; then
+      chroot=$(cat /etc/debian_chroot)
+    fi
+
+    if [[ -n "$chroot" ]]; then
+      zformat -f chroot_formatted "$chroot_format" "C:$chroot"
+    fi
+  fi
+
+  #chroot_info=$chroot
+  chroot_info=$chroot_formatted
+
+  return 0
+}
+
+chroot-info "$@"

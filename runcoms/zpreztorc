@@ -35,11 +35,15 @@ zstyle ':prezto:load' pmodule \
   'editor' \
   'history' \
   'directory' \
+  'python' \
   'spectrum' \
   'utility' \
   'completion' \
+  'syntax-highlighting' \
+  'autosuggestions' \
   'prompt' \
   'git' \
+  'k' \
   'chroot'
 
 #
